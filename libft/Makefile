@@ -6,7 +6,7 @@
 #    By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/11 16:15:21 by jcharloi          #+#    #+#              #
-#    Updated: 2017/03/10 16:18:32 by jcharloi         ###   ########.fr        #
+#    Updated: 2017/03/11 16:48:52 by jcharloi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,8 +76,8 @@ SRC = 	ft_memset.c \
 		ft_tabdel.c \
 		ft_strsrchi.c \
 		ft_intlen.c \
-		ft_itoabase.c \
-		ft_uitoabase.c
+		ft_signedbase.c \
+		ft_unsignedbase.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

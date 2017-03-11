@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 17:19:58 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/03/10 17:11:36 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/03/11 17:56:46 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,20 @@
 
 void	print_p(va_list *ap, t_param *param)
 {
-	param->number++;
-	ft_putnbr(va_arg(*ap, int));
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = ft_ultoabase(va_arg(*ap, unsigned long), 16);
+	write(1, "0x", 2);
+	param->number = param->number + 2;
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		param->number++;
+		i++;
+	}
+	ft_strdel(&str);
 }
 
 void	print_d(va_list *ap, t_param *param)
@@ -29,8 +41,18 @@ void	print_d(va_list *ap, t_param *param)
 
 void	print_dup(va_list *ap, t_param *param)
 {
-	param->number++;
-	ft_putnbr(va_arg(*ap, long));
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = ft_ltoabase(va_arg(*ap, long int), 10);
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		param->number++;
+		i++;
+	}
+	ft_strdel(&str);
 }
 
 void	print_i(va_list *ap, t_param *param)
@@ -44,6 +66,16 @@ void	print_i(va_list *ap, t_param *param)
 
 void	print_o(va_list *ap, t_param *param)
 {
-	param->number++;
-	ft_putnbr(va_arg(*ap, unsigned int));
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = ft_uitoabase(va_arg(*ap, unsigned int), 8);
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		param->number++;
+		i++;
+	}
+	ft_strdel(&str);
 }

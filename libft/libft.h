@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:09:11 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/03/10 16:19:35 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/03/11 16:10:49 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void				ft_tabdel(void	***tab);
 int					ft_strsrchi(const char *s, int c);
 int					ft_intlen(int n);
 char				*ft_itoabase(int n, int base);
+char				*ft_ltoabase(long n, unsigned int base);
 char				*ft_uitoabase(unsigned int nb, unsigned int base);
+char				*ft_ultoabase(unsigned long nb, unsigned int base);
 
 #endif
