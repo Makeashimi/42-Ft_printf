@@ -6,53 +6,44 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 12:42:48 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/03/11 14:07:40 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/07 17:31:52 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** base2	00	01	10	11  100	101	110 111							"01"
-** base10	00	01	02	03	04	05	06	07	08	09	10	11	12	13 "0123456789"
-** base16	0 1 2 3 4 5 6 7 8 9 a b c d e f 10 11 12 13 14 15 16 17 18 19 1a
-** "0123456789abcdef"
-*/
 
 #include "ft_printf.h"
 #include <wchar.h>
 
-static int	print_wchart(wchar_t c)
+void		print_c(va_list *ap, t_param *param)
 {
-	if (c >= 1114112)
-		return (0);
-	if (c < 128)
-	{
-		ft_putchar(c);
-		return (1);
-	}
-	else if (c < 2048)
-	{
-		ft_putchar(192 | (c >> 6));
-		ft_putchar(128 | (c & 63));
-		return (2);
-	}
-	else if (c < 65536)
-	{
-		ft_putchar(224 | (c >> 12));
-		ft_putchar(128 | ((c >> 6) & 63));
-		ft_putchar(128 | (c & 63));
-		return (3);
-	}
-	ft_putchar(240 | (c >> 18));
-	ft_putchar(128 | ((c >> 12) & 63));
-	ft_putchar(128 | ((c >> 6) & 63));
-	ft_putchar(128 | (c & 63));
-	return (4);
+	char	c;
+
+	c = va_arg(*ap, int);
+	param_width(param, 1);
+	param_zero(param, 1);
+	ft_putchar(c);
+	param->number++;
+	param_minus(param, 1);
+}
+
+void		print_cup(va_list *ap, t_param *param)
+{
+	wchar_t		c;
+	int			size;
+
+	c = va_arg(*ap, wchar_t);
+	size = whatsize(c);
+	param_width(param, size);
+	param_zero(param, size);
+	print_wchart(c);
+	param->number = param->number + size;
+	param_minus(param, size);
 }
 
 void		print_s(va_list *ap, t_param *param)
 {
 	char	*str;
 	int		i;
+	int		size;
 
 	i = 0;
 	str = va_arg(*ap, char *);
@@ -62,20 +53,40 @@ void		print_s(va_list *ap, t_param *param)
 		param->number = param->number + 6;
 		return ;
 	}
-	while (str[i] != '\0')
+	size = ft_strlen(str);
+	param_width(param, size);
+	param_zero(param, size);
+	if (param->precision == 0)
 	{
-		param->number++;
-		ft_putchar(str[i]);
-		i++;
+		while (str[i] != '\0')
+		{
+			param->number++;
+			ft_putchar(str[i]);
+			i++;
+		}
 	}
+	else if (param->precision && param->precision >= size)
+	{
+		while (str[i] != '\0')
+		{
+			param->number++;
+			ft_putchar(str[i]);
+			i++;
+		}
+	}
+	else if (param->precision && param->precision < size)
+		param_precisionstr(param, str);
+	param_minus(param, size);
 }
 
 void		print_sup(va_list *ap, t_param *param)
 {
 	wchar_t		*str;
 	int			i;
+	int			size;
 
 	i = 0;
+	size = 0;
 	str = va_arg(*ap, wchar_t*);
 	if (str == NULL)
 	{
@@ -85,24 +96,33 @@ void		print_sup(va_list *ap, t_param *param)
 	}
 	while (str[i] != '\0')
 	{
-		param->number = param->number + print_wchart(str[i]);
+		size = size + whatsize(str[i]);
 		i++;
 	}
+	param_width(param, size);
+	param_zero(param, size);
+	ft_putwchart(str);
+	param->number = param->number + size;
+	param_minus(param, size);
 }
 
-void		print_c(va_list *ap, t_param *param)
+void		print_p(va_list *ap, t_param *param)
 {
-	char	c;
+	char	*str;
+	int		i;
 
-	c = va_arg(*ap, int);
-	ft_putchar(c);
-	param->number++;
-}
-
-void		print_cup(va_list *ap, t_param *param)
-{
-	wchar_t		c;
-
-	c = va_arg(*ap, wchar_t);
-	param->number = param->number + print_wchart(c);
+	i = 0;
+	str = ft_ultoabase(va_arg(*ap, unsigned long), 16);
+	param_width(param, ft_strlen(str));
+	ft_putstr("0x");
+	param_zero(param, ft_strlen(str));
+	param->number = param->number + 2;
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		param->number++;
+		i++;
+	}
+	param_minus(param, ft_strlen(str));
+	ft_strdel(&str);
 }

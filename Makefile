@@ -6,7 +6,7 @@
 #    By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/15 14:04:45 by jcharloi          #+#    #+#              #
-#    Updated: 2017/03/10 16:33:08 by jcharloi         ###   ########.fr        #
+#    Updated: 2017/04/06 16:04:16 by jcharloi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,12 @@ NAME = libftprintf.a
 CFLAGS = -Wall -Werror -Wextra
 
 SRC = ft_printf.c \
+	check_after.c \
+	print_param.c \
+	print_param2.c \
 	print_type.c \
 	print_type2.c \
-	print_type3.c \
-	create_tab.c
+	print_type3.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -44,7 +46,7 @@ fclean: clean
 re: clean fclean all
 
 test:
-	$(CC) -o printf_exec main.c $(NAME) $(CFLAGS)
+	$(CC) -o printf_exec main.c $(NAME)
 	./printf_exec
 
 .PHONY: clean fclean re

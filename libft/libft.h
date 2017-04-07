@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:09:11 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/03/11 16:10:49 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/03/30 13:36:44 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,13 @@ int					ft_sqrt(int nb);
 void				ft_tabdel(void	***tab);
 int					ft_strsrchi(const char *s, int c);
 int					ft_intlen(int n);
+int					ft_llen(long n);
 char				*ft_itoabase(int n, int base);
 char				*ft_ltoabase(long n, unsigned int base);
 char				*ft_uitoabase(unsigned int nb, unsigned int base);
 char				*ft_ultoabase(unsigned long nb, unsigned int base);
+int					whatsize(wchar_t c);
+void				print_wchart(wchar_t c);
+void				ft_putwchart(wchar_t *str);
 
 #endif

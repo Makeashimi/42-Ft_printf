@@ -1,32 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_len.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/11 17:12:53 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/03/30 15:55:36 by jcharloi         ###   ########.fr       */
+/*   Created: 2017/03/09 14:47:11 by jcharloi          #+#    #+#             */
+/*   Updated: 2017/04/01 19:05:04 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int n)
+int		ft_intlen(int n)
 {
-	unsigned int nb;
+	int len;
 
-	nb = n;
-	if (n < 0)
+	len = 0;
+	if (n <= 0)
+		len++;
+	while (n != 0)
 	{
-		ft_putchar('-');
-		nb = n * -1;
+		n = n / 10;
+		len++;
 	}
-	if (nb >= 10)
+	return (len);
+}
+
+int		ft_llen(long n)
+{
+	int len;
+
+	len = 0;
+	if (n <= 0)
+		len++;
+	while (n != 0)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		n = n / 10;
+		len++;
 	}
-	else
-		ft_putchar(nb + '0');
+	return (len);
 }

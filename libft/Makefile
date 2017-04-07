@@ -6,7 +6,7 @@
 #    By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/11 16:15:21 by jcharloi          #+#    #+#              #
-#    Updated: 2017/03/11 16:48:52 by jcharloi         ###   ########.fr        #
+#    Updated: 2017/03/30 13:37:23 by jcharloi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,9 +75,10 @@ SRC = 	ft_memset.c \
 		ft_sqrt.c \
 		ft_tabdel.c \
 		ft_strsrchi.c \
-		ft_intlen.c \
+		ft_len.c \
 		ft_signedbase.c \
-		ft_unsignedbase.c
+		ft_unsignedbase.c \
+		ft_print_wchart.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

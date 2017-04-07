@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 14:10:05 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/03/11 17:51:32 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/07 17:29:42 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 ** minimal de caractères imprimés.
 ** Si le nombre de caractères (octets) de valeur de sortie est INFERIEUR à la
 ** largeur, des blancs sont ajoutés sur la gauche ou la droite.
-** (selon que le - indicateur est spécifié) jusqu'à ce que la largeur minimale
-** est atteinte.
+** (selon que le - indicateur) jusqu'à ce que la largeur minimale
+** soit atteinte.
 ** Si le nombre de caractères de valeur de sortie est SUPERIEUR, il écrit tout
 ** et ne tronque pas.
 ** Pour les types ls et S, la largueur compte en octets mais fait la même chose,
@@ -50,52 +50,88 @@ int		main(int argc, char **argv)
 	min = 59;
 	precision = 10;
 	sec = 42;
-	// ft_printf("%1$+100.6d\n", 42);
-	ft_printf("-------TEST DES TYPES--------\n");
-	printf("Test des s : %s\n", "hspijshtp[jo");
-	ft_printf("Test des S : %S\n", L"sêjruykxfmxhgmjuyklduc kmgjn");
-	ft_printf("Test des d : %d\n", 2147483647);
-	ft_printf("Test des D : %D\n", LONG_MIN);
-	ft_printf("Test des i : %i\n", 2147483647);
-	ft_printf("Test des o : %o\n", 2147483647);
-	ft_printf("Test des O : %O\n", 2147483647);
-	ft_printf("Test des u : %u\n", 2147483647);
-	ft_printf("Test des U : %U\n", 2147483647);
-	ft_printf("Test des x : %x\n", -42);
-	ft_printf("Test des X : %X\n", -1);
-	ft_printf("Test des c : %c\n", 'n');
-	ft_printf("Test des C : %C\n", L'é');
-	ft_printf("Test des p : %p\n", &min);
-	ft_printf("----FIN DU TEST DES TYPES-----\n");
+	ft_printf("-------- TEST DE PRINTF --------\n");
+	// ft_printf("------- TEST DES FLAGS --------\n");
+	//ft_printf("%1$+100.6d\n", 42);
+	// ft_printf("--- TEST DES + ----\n");
+	// ft_printf("%+d\n", 0);
+	// ft_printf("%+d\n", -4);
+	// ft_printf("%+d\n", 42);
+	// ft_printf("%+D\n", 5200000L);
+	// ft_printf("--- TEST DES -/space ----\n");
+	// printf("L'original : %1s\n", "There");
+	// ft_printf("Le mien    : %1s\n", "There");
+	// printf("L'original : %-5d\n", 42);
+	// ft_printf("Le mien    : %-5d\n", 42);
+	// printf("L'original : %-10d\n", 42);
+	// ft_printf("Le mien    : %-10d\n", 42);
+	// printf("L'original : %-010d\n", 42);
+	// ft_printf("Le mien    : %-010d\n", 42);
+	// ft_printf("------ TEST DES # -------\n");
+	// printf("L'original #o: %#010o\n", 42);
+	//printf("L'original #x: %#O\n", 1);
+	// printf("L'original #X: %#010X\n", 42);
+	// ft_printf("Le mien    #o: %#010o\n", 42);
+	// ft_printf("Le mien    #x: %#O\n", 1);
+	// ft_printf("Le mien    #X: %#010X\n", 42);
+	// printf("L'original : %10d\n", 12);
+	// ft_printf("Le mien    : %10d\n", 12);
+	// printf("L'original : %010x\n", -42);
+	// ft_printf("Le mien    : %010x\n", -42);
+	// ft_printf("---- FIN DU TEST DES FLAGS -----\n");
+	// ft_printf("-------TEST DES TYPES--------\n");
+	//printf("Test des s : {%s}", 0);
+	ft_printf("Test des s : {%s}", 0);
+	// ft_printf("Test des S : %030S\n", L"我是一只猫。");
+	// ft_printf("Test des d : %d\n", 2147483647);
+	// ft_printf("Test des D : %D\n", LONG_MIN);
+	// ft_printf("Test des i : %i\n", 2147483647);
+	// ft_printf("Test des o : %o\n", 2147483647);
+	// ft_printf("Test des O : %O\n", 2147483647);
+	// ft_printf("Test des u : %u\n", 2147483647);
+	// ft_printf("Test des U : %U\n", 2147483647);
+	// ft_printf("Test des x : %x\n", -42);
+	// ft_printf("Test des X : %X\n", -1);
+	// ft_printf("Test des c : %c\n", 'n');
+	// ft_printf("Test des C : %C\n", L'δ');
+	// ft_printf("Test des C : %C\n", L'猫');
+	// ft_printf("Test des p : %p\n", &min);
+	// ft_printf("----FIN DU TEST DES TYPES-----\n");
+	ft_printf("---- TEST DES PRECISIONS ----\n");
+	//printf("L'original : %.4o\n", 42);
+	//printf("L'original : %.4u\n", 42);
+	// printf("L'original : %0.8d\n", 42);
+	printf("L'original : %.4s\n", "coucou");
+	printf("L'original : %.8s\n", "coucou");
+	ft_printf("Le mien    : %.4s\n", "coucou");
+	ft_printf("Le mien    : %.8s\n", "coucou");
+	// printf("L'original : %.4d\n", L'é');
+	// printf("L'original : %10.d, %10.0d\n", 0, 0);
+	// printf("L'original : %06.4d\n", 0);
+	//ft_printf("Le mien    : %.4o\n", 42);
+	//ft_printf("Le mien    : %.4u\n", 42);
+
+	/* 
+	** ! Avec le d !
+	** Precision (0) : intlen(precision) > intlen(param) = param - precision
+	** sinon rien.
+	** Width ( ) : intlen(width) > intlen(param) = param - width
+	** sinon rien.
+	** Precision avec width ( ) (0) : Meme comportement independement de l'autre
+	*/
+
+	//ft_printf("L'original : %0.8d\n", 42);
+	// ft_printf("---- FIN DU TEST DES PRECISIONS ----\n");
 	// ft_printf("-------TEST DES CAS--------\n");
+	// ft_printf("Le mien    : %#.O\n", 0);
+	// printf("L'original : %#.O\n", 0);
+	// ft_printf("Le mien    : %#.O\n", -42);
+	// ft_printf("Le mien    : %s %C %d %p %x %% %S\n", "bonjour ", L'該', 42, &free, 42, L"ﻞﺤﻣ ﺦﻧﺰﻳﺭ");
 	// ft_printf("%% : %%");
-	// ft_printf("123%s456\n", "borhink");
-	//ft_printf("Je m'appelle %s Roi des Trolls, j'ai %d ans\n", "Rammus", 453);
-	//ft_printf("Salut %c, je mange %d oeufs\n", 'o', 42);
-	//sec = ft_printf("%d\n", 42000);
-	//printf("The %d\n", 1);
 	// ft_printf("Je mange %x fruits", 4294967295);
 	// ft_printf("%1$f:%2$10.*3$d:%4$.*3$ld\n", hour, min, precision, (long)sec);
 	// printf("Pourquoi ?%*d", hour, min);
 	// printf("\n");
 	// printf("Pourquoi ?%2$*1$d", hour, min);
-	// printf("\n");
-	// printf("-------------------\n");
-	// printf("DOUBLE\n");
-	// printf("e : %e\n", hour);
-	// printf("f : %f\n", hour);
-	// printf("g : %g\n\n", hour);
-	// printf("-------------------\n");
-	// printf("N\n");
-	// printf("0123456789%n\n", &sec);
-	// printf("%d\n", sec);
-	// printf("-------------------\n");
-	// printf("numero : |%10d|\n", 42);
-	// printf("\n");
-	// printf("-------------------\n");
-	// printf("FLAG #\n");
-	// printf("hex : %#g\n", hour);
-	// ft_printf("----------------\n");
-	// ft_printf("ABCAAR\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 10:24:33 by jcharloi          #+#    #+#             */
-/*   Updated: 2016/12/13 16:26:28 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/03 16:32:09 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_atoi(const char *str)
 		i++;
 	while (str[i] != '\0' && (ft_isdigit(str[i])))
 	{
-		fraiche = str[i] - 48 + fraiche * 10;
+		fraiche = (fraiche * 10) + (str[i] - 48);
 		i++;
 	}
 	if (isnegative == 1)
