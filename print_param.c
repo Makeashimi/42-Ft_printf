@@ -30,7 +30,16 @@ int		lensharp(t_param *param)
 
 void	param_minus(t_param *param, int size)
 {
-	param->width = param->width - size - lensharp(param);
+	//printf("\nwidth : %d\n", param->width);
+	//printf("\nprecision : %d\n", size);
+	if (param->precision && size == 0)
+		param->width = param->width - size;
+	else if (param->precision)
+		param->width = param->width - param->precision - lensharp(param);
+	else
+		param->width = param->width - size - lensharp(param);
+	//printf("\nsize : %d\n", size);
+	//printf("\nwidth : %d\n", param->width);
 	if (param->minus)
 	{
 		while (param->width > 0)

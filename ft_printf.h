@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 12:34:59 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/04/07 17:16:41 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/11 16:06:27 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ void			param_minus(t_param *param, int size);
 void			param_plus(t_param *param, int n);
 void			param_space(t_param *param);
 void			param_width(t_param *param, int len);
+void			param_widthstr(t_param *param, int len);
+void			param_widthwchart(t_param *param, wchar_t *str, int len);
 void			param_zero(t_param *param, int len);
-void			param_precisioninteger(t_param *param);
+void			param_precision(t_param *param, int size);
 void			param_precisionstr(t_param *param, char *str);
+void			param_precisionwchart(t_param *param, wchar_t *str, int size);
 int				lensharp(t_param *param);
 void			print_s(va_list *ap, t_param *param);
 void			print_sup(va_list *ap, t_param *param);

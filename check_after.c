@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 15:12:24 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/04/07 16:45:33 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/10 16:49:21 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,18 @@ void			check_after(t_param *param, const char *format, int *i)
 	check_flags(param, format, i);
 	if (ft_isdigit(format[*i]))
 	{
-	 	param->width = ft_atoi(&format[*i]);
+		param->width = ft_atoi(&format[*i]);
 		(*i) = (*i) + ft_intlen(param->width);
 	}
 	if (format[*i] == '.')
 	{
 		if (ft_isdigit(format[(*i) + 1]))
-	 	{
-	 		param->precision = ft_atoi(&format[(*i) + 1]);
-	 		(*i) = (*i) + ft_intlen(param->precision);
-	 	}
-	 	(*i)++;
+		{
+			param->precision = ft_atoi(&format[(*i) + 1]);
+			(*i) = (*i) + ft_intlen(param->precision);
+		}
+		(*i)++;
 	}
-	//if (param->precision == 0)
-	//printf("precision : %d\n", param->precision);
 	if (check_type(param, format[*i]) == 1)
 		return ;
 	else if (format[*i] != '\0')

@@ -6,7 +6,7 @@
 #    By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/15 14:04:45 by jcharloi          #+#    #+#              #
-#    Updated: 2017/04/06 16:04:16 by jcharloi         ###   ########.fr        #
+#    Updated: 2017/04/10 16:43:56 by jcharloi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,10 @@ SRC = ft_printf.c \
 	check_after.c \
 	print_param.c \
 	print_param2.c \
-	print_type.c \
-	print_type2.c \
-	print_type3.c
+	print_precision.c \
+	print_csp.c \
+	print_dio.c \
+	print_oux.c
 
 OBJ = $(SRC:.c=.o)
 

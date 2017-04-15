@@ -6,13 +6,13 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 15:16:45 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/03/11 16:39:56 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/10 16:24:20 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	ft_size(int n)
+static	int	ft_sizehere(int n)
 {
 	int compteur;
 
@@ -35,7 +35,7 @@ char		*ft_itoa(int n)
 	int		i;
 
 	nb = (long)n;
-	taille = ft_size(n);
+	taille = ft_sizehere(n);
 	i = taille - 1;
 	fraiche = ft_strnew(taille);
 	if (fraiche == NULL)

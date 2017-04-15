@@ -6,13 +6,13 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 16:40:39 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/03/11 16:42:31 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/10 16:18:31 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	ft_size(unsigned long n, unsigned int base)
+int			ft_size(unsigned long n, unsigned int base)
 {
 	int compteur;
 

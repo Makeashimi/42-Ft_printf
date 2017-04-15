@@ -6,12 +6,13 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 14:10:05 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/04/07 17:29:42 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/14 22:49:03 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <limits.h>
+#include <locale.h>
 
 /*
 ** %[parameter][flags][width][.precision][length]type
@@ -80,8 +81,8 @@ int		main(int argc, char **argv)
 	// ft_printf("Le mien    : %010x\n", -42);
 	// ft_printf("---- FIN DU TEST DES FLAGS -----\n");
 	// ft_printf("-------TEST DES TYPES--------\n");
-	//printf("Test des s : {%s}", 0);
-	ft_printf("Test des s : {%s}", 0);
+	// printf("Test des s : %05s\n", "abc");
+	// ft_printf("Test des s : %05s\n", "abc");
 	// ft_printf("Test des S : %030S\n", L"我是一只猫。");
 	// ft_printf("Test des d : %d\n", 2147483647);
 	// ft_printf("Test des D : %D\n", LONG_MIN);
@@ -89,7 +90,7 @@ int		main(int argc, char **argv)
 	// ft_printf("Test des o : %o\n", 2147483647);
 	// ft_printf("Test des O : %O\n", 2147483647);
 	// ft_printf("Test des u : %u\n", 2147483647);
-	// ft_printf("Test des U : %U\n", 2147483647);
+	// ft_printf("Test des U : %U", 42);
 	// ft_printf("Test des x : %x\n", -42);
 	// ft_printf("Test des X : %X\n", -1);
 	// ft_printf("Test des c : %c\n", 'n');
@@ -98,17 +99,34 @@ int		main(int argc, char **argv)
 	// ft_printf("Test des p : %p\n", &min);
 	// ft_printf("----FIN DU TEST DES TYPES-----\n");
 	ft_printf("---- TEST DES PRECISIONS ----\n");
-	//printf("L'original : %.4o\n", 42);
+	// printf("L'original : %.4o\n", 42);
 	//printf("L'original : %.4u\n", 42);
 	// printf("L'original : %0.8d\n", 42);
-	printf("L'original : %.4s\n", "coucou");
-	printf("L'original : %.8s\n", "coucou");
-	ft_printf("Le mien    : %.4s\n", "coucou");
-	ft_printf("Le mien    : %.8s\n", "coucou");
-	// printf("L'original : %.4d\n", L'é');
+	setlocale(LC_ALL, "");
+	// printf("L'original : %15.6S\n", L"我是一只猫。");
+	//printf("L'original : %+10.5d\n", 4242);
+	printf("L'original : %-5.10o\n", 2500);
+	//printf("L'original : %5.2s is a string\n", "");
+	// printf("L'original : %4.15s\n", "I am 42");
+	// ft_printf("Le mien    : %15.6S\n", L"我是一只猫。");
+	//ft_printf("Le mien    : %5.2s is a string\n", "");
+	ft_printf("Le mien    : %-5.10o\n", 2500);
+	// ft_printf("Le mien    : %4.15s\n", "I am 42");
+	//printf("L'original : %0.8d\n", 42);
+	// printf("L'original : %2.9p\n", 1234567);
+	// printf("L'original : %15.4p\n", 0);
+	// printf("L'original : %15.4p\n", 1234);
+	// printf("L'original : %4.15p\n", "42");
+	// printf("L'original : %4.15p\n", "I am 42");
+	// ft_printf("Le mien    : %2.9p\n", 1234567);
+	// ft_printf("Le mien    : %15.4p\n", "42");
+	// ft_printf("Le mien    : %4.15p\n", "42");
+	// ft_printf("Le mien    : %4.15p\n", "I am 42");
+	
+	// printf("L'original : %15.4d\n", 42);
+	// ft_printf("Le mien    : %4.15d\n", 42);
+	// ft_printf("Le mien    : %15.4d\n", 42);
 	// printf("L'original : %10.d, %10.0d\n", 0, 0);
-	// printf("L'original : %06.4d\n", 0);
-	//ft_printf("Le mien    : %.4o\n", 42);
 	//ft_printf("Le mien    : %.4u\n", 42);
 
 	/* 

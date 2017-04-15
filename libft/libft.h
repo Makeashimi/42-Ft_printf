@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 17:09:11 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/03/30 13:36:44 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/10 16:18:46 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ char				*ft_itoabase(int n, int base);
 char				*ft_ltoabase(long n, unsigned int base);
 char				*ft_uitoabase(unsigned int nb, unsigned int base);
 char				*ft_ultoabase(unsigned long nb, unsigned int base);
+int					ft_size(unsigned long n, unsigned int base);
 int					whatsize(wchar_t c);
 void				print_wchart(wchar_t c);
 void				ft_putwchart(wchar_t *str);

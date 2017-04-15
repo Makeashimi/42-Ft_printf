@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 12:34:29 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/04/07 16:46:37 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/10 16:48:37 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_arg g_print_type[15] =
 	print_pourcent
 };
 
-void	print_type(t_param *param, va_list *ap)
+void		print_type(t_param *param, va_list *ap)
 {
 	g_print_type[param->type](ap, param);
 }
