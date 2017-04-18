@@ -59,6 +59,33 @@ static void		wrong_param(t_param *param, char c)
 	param_minus(param, 1);
 }
 
+static void		check_height(t_param *param, const char *format, int *i)
+{
+	while (format[*i] == 'h' || format[*i] == 'l' || format[*i] == 'j' ||
+				format[*i] == 'z')
+	{
+		if (format[*i] == 'h')
+		{
+			if (format[*i + 1] == 'h')
+				param->hh = 1;
+			else if (format[*i + 1] != 'h')
+				param->h = 1;
+		}
+		if (format[*i] == 'l')
+		{
+			if (format[*i + 1] == 'l')
+				param->ll = 1;
+			else if (format[*i + 1] != 'l')
+				param->l = 1;
+		}
+		if (format[*i] == 'j')
+			param->j = 1;
+		if (format[*i] == 'z')
+			param->z = 1;
+		(*i)++;
+	}
+}
+
 void			check_after(t_param *param, const char *format, int *i)
 {
 	(*i)++;
@@ -77,6 +104,7 @@ void			check_after(t_param *param, const char *format, int *i)
 		}
 		(*i)++;
 	}
+	check_height(param, format, i);
 	if (check_type(param, format[*i]) == 1)
 		return ;
 	else if (format[*i] != '\0')

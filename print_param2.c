@@ -17,14 +17,16 @@ void	param_width(t_param *param, int len)
 	int		widthcopy;
 
 	widthcopy = param->width;
+	if (param->space)
+		widthcopy--;
 	if (param->precision && param->width <= param->precision)
 		return ;
 	else if (param->precision)
 		widthcopy = widthcopy - param->precision - len - lensharp(param);
 	if (param->precision == 0)
 		widthcopy = widthcopy - len - lensharp(param);
-	// printf("%d\n", widthcopy);
-	// widthcopy = 4;
+	//printf("%d\n", widthcopy);
+	//widthcopy = 4;
 	if (widthcopy && param->minus == 0 && param->zero == 0)
 	{
 		while (widthcopy > 0)

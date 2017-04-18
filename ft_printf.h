@@ -19,15 +19,21 @@
 
 typedef	struct	s_param
 {
-	int			type;
 	int			number;
 	int			plus;
 	int			minus;
 	int			sharp;
 	int			space;
-	int			width;
 	int			zero;
+	int			width;
 	int			precision;
+	int			h;
+	int			hh;
+	int			l;
+	int			ll;
+	int			j;
+	int			z;
+	int			type;
 }				t_param;
 
 typedef	void(*t_arg)(va_list*, t_param*);

@@ -16,14 +16,25 @@ void	param_precision(t_param *param, int size)
 {
 	int		precisioncopy;
 
-	if (param->minus && param->width > param->precision)
+	precisioncopy = param->precision;
+	//printf("%d\n", precisioncopy);
+	//printf("%d\n", size);
+	//printf("\n%d\n", precisioncopy);
+	if (param->plus && param->minus)
+		precisioncopy = param->precision - size;
+	else if (param->minus && param->width <= param->precision && param->precision >= size)
+		precisioncopy = param->precision - size;
+	else if (param->minus)
 		precisioncopy = param->width - param->precision - size;
 	else
+	{
+		//printf("\n%d\n", precisioncopy);
 		precisioncopy = param->precision;
-	//printf("%d\n", precisioncopy);
+		//printf("\n%d\n", precisioncopy);
+	}
+	//printf("\n%d\n", precisioncopy);
 	while (param->precision && precisioncopy > 0)
 	{
-		//printf("giepgps\n");
 		ft_putchar('0');
 		precisioncopy--;
 		param->number++;

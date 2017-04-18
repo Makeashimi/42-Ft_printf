@@ -84,7 +84,7 @@ int		main(int argc, char **argv)
 	// printf("Test des s : %05s\n", "abc");
 	// ft_printf("Test des s : %05s\n", "abc");
 	// ft_printf("Test des S : %030S\n", L"我是一只猫。");
-	// ft_printf("Test des d : %d\n", 2147483647);
+	//ft_printf("Test des d : %d\n", 2147483647);
 	// ft_printf("Test des D : %D\n", LONG_MIN);
 	// ft_printf("Test des i : %i\n", 2147483647);
 	// ft_printf("Test des o : %o\n", 2147483647);
@@ -98,19 +98,19 @@ int		main(int argc, char **argv)
 	// ft_printf("Test des C : %C\n", L'猫');
 	// ft_printf("Test des p : %p\n", &min);
 	// ft_printf("----FIN DU TEST DES TYPES-----\n");
-	ft_printf("---- TEST DES PRECISIONS ----\n");
+	//ft_printf("---- TEST DES PRECISIONS ----\n");
 	// printf("L'original : %.4o\n", 42);
 	//printf("L'original : %.4u\n", 42);
 	// printf("L'original : %0.8d\n", 42);
 	setlocale(LC_ALL, "");
 	// printf("L'original : %15.6S\n", L"我是一只猫。");
-	//printf("L'original : %+10.5d\n", 4242);
-	printf("L'original : %-5.10o\n", 2500);
+	// printf("L'original : %03.2d\n", -1);
+	// printf("L'original : % 10.5d\n", 2500);
 	//printf("L'original : %5.2s is a string\n", "");
 	// printf("L'original : %4.15s\n", "I am 42");
 	// ft_printf("Le mien    : %15.6S\n", L"我是一只猫。");
-	//ft_printf("Le mien    : %5.2s is a string\n", "");
-	ft_printf("Le mien    : %-5.10o\n", 2500);
+	//ft_printf("Le mien    : %.2s is a string\n", "");
+	// ft_printf("Le mien    : %03.2d\n", -1);
 	// ft_printf("Le mien    : %4.15s\n", "I am 42");
 	//printf("L'original : %0.8d\n", 42);
 	// printf("L'original : %2.9p\n", 1234567);
@@ -140,6 +140,13 @@ int		main(int argc, char **argv)
 
 	//ft_printf("L'original : %0.8d\n", 42);
 	// ft_printf("---- FIN DU TEST DES PRECISIONS ----\n");
+	ft_printf("---- TEST DES HAUTEURS ----\n");
+	printf("L'original : %lc\n", L'該');
+	ft_printf("Le mien    : %lc\n", L'該');
+	printf("L'original : %lc\n", L'ﺡ');
+	ft_printf("Le mien    : %lc\n", L'ﺡ');
+	//ft_printf("Le mien    : %hd\n", 42);
+	//ft_printf("Le mien    : %lld\n", 42);
 	// ft_printf("-------TEST DES CAS--------\n");
 	// ft_printf("Le mien    : %#.O\n", 0);
 	// printf("L'original : %#.O\n", 0);

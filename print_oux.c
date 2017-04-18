@@ -52,7 +52,10 @@ void	print_u(va_list *ap, t_param *param)
 	int		size;
 
 	i = 0;
-	str = ft_uitoabase(va_arg(*ap, unsigned int), 10);
+	if (param->l)
+		str = ft_ultoabase(va_arg(*ap, unsigned long), 10);
+	else
+		str = ft_uitoabase(va_arg(*ap, unsigned int), 10);
 	size = ft_strlen(str);
 	if (param->minus == 0)
 		param->precision = param->precision - size;
@@ -92,13 +95,22 @@ void	print_uup(va_list *ap, t_param *param)
 void	print_x(va_list *ap, t_param *param)
 {
 	char			*str;
-	unsigned int	nb;
+	unsigned int	argint;
+	unsigned long	arglong;
 	int				i;
 	int				size;
 
 	i = 0;
-	nb = va_arg(*ap, unsigned int);
-	str = ft_uitoabase(nb, 16);
+	if (param->l)
+	{
+		arglong = va_arg(*ap, unsigned long);
+		str = ft_ultoabase(arglong, 16);
+	}
+	else
+	{
+		argint = va_arg(*ap, unsigned int);
+		str = ft_uitoabase(argint, 16);
+	}
 	size = ft_strlen(str);
 	if (param->minus == 0)
 		param->precision = param->precision - size;
@@ -106,7 +118,7 @@ void	print_x(va_list *ap, t_param *param)
 		param->precision = 0;
 	param_width(param, size);
 	param_precision(param, size);
-	if (param->sharp && nb > 0)
+	if (param->sharp && argint > 0)
 	{
 		ft_putstr("0x");
 		param->number = param->number + 2;
@@ -125,13 +137,22 @@ void	print_x(va_list *ap, t_param *param)
 void	print_xup(va_list *ap, t_param *param)
 {
 	char			*str;
-	unsigned int	nb;
+	unsigned int	argint;
+	unsigned long	arglong;
 	int				i;
 	int				size;
 
 	i = 0;
-	nb = va_arg(*ap, unsigned int);
-	str = ft_uitoabase(nb, 16);
+	if (param->l)
+	{
+		arglong = va_arg(*ap, unsigned long);
+		str = ft_ultoabase(arglong, 16);
+	}
+	else
+	{
+		argint = va_arg(*ap, unsigned int);
+		str = ft_uitoabase(argint, 16);
+	}
 	size = ft_strlen(str);
 	if (param->minus == 0)
 		param->precision = param->precision - size;
@@ -139,7 +160,7 @@ void	print_xup(va_list *ap, t_param *param)
 		param->precision = 0;
 	param_width(param, size);
 	param_precision(param, size);
-	if (param->sharp && nb > 0)
+	if (param->sharp && argint > 0)
 	{
 		ft_putstr("0X");
 		param->number = param->number + 2;

@@ -12,8 +12,28 @@
 
 #include "ft_printf.h"
 
-static void	print_d2(t_param *param, int size, char *str, int i)
+static void		print_dwithl(t_param *param, int size, char *str, unsigned long arglong)
 {
+	int		i;
+
+	i = 0;
+	if (param->precision > 0 && str[i] == '-')
+		param->precision++;
+	if (param->minus == 0)
+		param->precision = param->precision - size;
+	if (param->precision < 0)
+		param->precision = 0;
+	if (param->plus && param->minus == 0 && param->zero == 0)
+		size++;
+	param_space(param);
+	param_width(param, size);
+	param_plus(param, arglong);
+	if (str[i] == '-')
+	{
+		ft_putchar('-');
+		param->number++;
+		i++;
+	}
 	if ((param->zero && param->space))
 		size++;
 	param_precision(param, size);
@@ -28,39 +48,69 @@ static void	print_d2(t_param *param, int size, char *str, int i)
 	ft_strdel(&str);
 }
 
-void		print_d(va_list *ap, t_param *param)
+static void		print_simpled(t_param *param, int size, char *str, int argint)
 {
-	char	*str;
-	int		n;
 	int		i;
-	int		size;
 
 	i = 0;
-	n = va_arg(*ap, int);
-	str = ft_itoa(n);
-	size = ft_strlen(str);
+	if (param->precision > 0 && str[i] == '-')
+		param->precision++;
 	if (param->minus == 0)
 		param->precision = param->precision - size;
 	if (param->precision < 0)
 		param->precision = 0;
-	if (param->plus && (n >= 0 || param->zero == 0))
+	if (param->plus && param->minus == 0 && (argint >= 0 || param->zero == 0))
 		size++;
-	if (n >= 0)
+	if (argint >= 0)
 		param_space(param);
-	if (param->precision && str[i] == '-')
-		param->precision++;
 	param_width(param, size);
-	param_plus(param, n);
+	param_plus(param, argint);
 	if (str[i] == '-')
 	{
 		ft_putchar('-');
 		param->number++;
 		i++;
 	}
-	print_d2(param, size, str, i);
+	if ((param->zero && param->space))
+		size++;
+	param_precision(param, size);
+	param_zero(param, size);
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		param->number++;
+		i++;
+	}
+	param_minus(param, size);
+	ft_strdel(&str);
 }
 
-void		print_dup(va_list *ap, t_param *param)
+void			print_d(va_list *ap, t_param *param)
+{
+	char			*str;
+	unsigned long	arglong;
+	int				argint;
+	int				size;
+	int				i;
+
+	i = 0;
+	if (param->l)
+	{
+		arglong = va_arg(*ap, unsigned long);
+		str = ft_ltoabase(arglong, 10);
+		size = ft_strlen(str);
+		print_dwithl(param, size, str, arglong);
+	}
+	else
+	{
+		argint = va_arg(*ap, int);
+		str = ft_itoa(argint);
+		size = ft_strlen(str);
+		print_simpled(param, size, str, argint);
+	}
+}
+
+void			print_dup(va_list *ap, t_param *param)
 {
 	char	*str;
 	int		i;
@@ -89,21 +139,30 @@ void		print_dup(va_list *ap, t_param *param)
 	ft_strdel(&str);
 }
 
-void		print_i(va_list *ap, t_param *param)
+void			print_i(va_list *ap, t_param *param)
 {
 	print_d(ap, param);
 }
 
-void		print_o(va_list *ap, t_param *param)
+void			print_o(va_list *ap, t_param *param)
 {
 	char			*str;
-	unsigned int	nb;
+	unsigned int	argint;
+	unsigned long	arglong;
 	int				i;
 	int				size;
 
 	i = 0;
-	nb = va_arg(*ap, unsigned int);
-	str = ft_uitoabase(nb, 8);
+	if (param->l)
+	{
+		arglong = va_arg(*ap, unsigned long);
+		str = ft_ultoabase(arglong, 8);
+	}
+	else
+	{
+		argint = va_arg(*ap, unsigned int);
+		str = ft_uitoabase(argint, 8);
+	}
 	size = ft_strlen(str);
 	if (param->minus == 0)
 		param->precision = param->precision - size;
@@ -111,7 +170,7 @@ void		print_o(va_list *ap, t_param *param)
 		param->precision = 0;
 	param_width(param, size);
 	param_precision(param, size);
-	if (param->sharp && nb > 0)
+	if (param->sharp && argint > 0)
 	{
 		ft_putchar('0');
 		param->number++;

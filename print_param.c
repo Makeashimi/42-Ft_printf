@@ -32,6 +32,8 @@ void	param_minus(t_param *param, int size)
 {
 	//printf("\nwidth : %d\n", param->width);
 	//printf("\nprecision : %d\n", size);
+	if (param->plus)
+		param->width--;
 	if (param->precision && size == 0)
 		param->width = param->width - size;
 	else if (param->precision)

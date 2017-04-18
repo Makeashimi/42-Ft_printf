@@ -46,6 +46,12 @@ static int	whenpourcent(t_param *param, va_list *ap, const char *format,
 	param->width = 0;
 	param->zero = 0;
 	param->precision = 0;
+	param->h = 0;
+	param->hh = 0;
+	param->l = 0;
+	param->ll = 0;
+	param->j = 0;
+	param->z = 0;
 	check_after(param, format, i);
 	if (param->type >= 0)
 	{

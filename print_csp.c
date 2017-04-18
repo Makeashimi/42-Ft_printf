@@ -17,6 +17,11 @@ void		print_c(va_list *ap, t_param *param)
 {
 	char	c;
 
+	if (param->l)
+	{
+		print_cup(ap, param);
+		return;
+	}
 	c = va_arg(*ap, int);
 	param_width(param, 1);
 	param_zero(param, 1);
@@ -46,6 +51,11 @@ void		print_s(va_list *ap, t_param *param)
 	int		size;
 
 	i = 0;
+	if (param->l)
+	{
+		print_sup(ap, param);
+		return;
+	}
 	str = va_arg(*ap, char *);
 	if (str == NULL)
 	{
