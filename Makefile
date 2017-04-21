@@ -6,7 +6,7 @@
 #    By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/15 14:04:45 by jcharloi          #+#    #+#              #
-#    Updated: 2017/04/10 16:43:56 by jcharloi         ###   ########.fr        #
+#    Updated: 2017/04/19 16:44:44 by jcharloi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,15 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRC = ft_printf.c \
 	check_after.c \
-	print_param.c \
-	print_param2.c \
+	print_flags.c \
+	print_width.c \
 	print_precision.c \
-	print_csp.c \
-	print_dio.c \
-	print_oux.c
+	print_params.c \
+	print_cs.c \
+	print_di.c \
+	print_o.c \
+	print_pu.c \
+	print_x.c
 
 OBJ = $(SRC:.c=.o)
 

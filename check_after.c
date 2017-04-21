@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 15:12:24 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/04/10 16:49:21 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/20 16:15:19 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ static void		check_flags(t_param *param, const char *format, int *i)
 
 static void		wrong_param(t_param *param, char c)
 {
-	param_width(param, 1);
-	param_zero(param, 1);
+	param->sizestr = 1;
+	param_width(param);
+	param_zero(param);
 	ft_putchar(c);
 	param->number++;
-	param_minus(param, 1);
+	param_minus(param);
 }
 
 static void		check_height(t_param *param, const char *format, int *i)
@@ -86,7 +87,7 @@ static void		check_height(t_param *param, const char *format, int *i)
 	}
 }
 
-void			check_after(t_param *param, const char *format, int *i)
+void		check_after(t_param *param, const char *format, int *i)
 {
 	(*i)++;
 	check_flags(param, format, i);
@@ -99,6 +100,7 @@ void			check_after(t_param *param, const char *format, int *i)
 	{
 		if (ft_isdigit(format[(*i) + 1]))
 		{
+			param->isprecision = 1;
 			param->precision = ft_atoi(&format[(*i) + 1]);
 			(*i) = (*i) + ft_intlen(param->precision);
 		}

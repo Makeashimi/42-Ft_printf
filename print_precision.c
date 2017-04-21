@@ -6,40 +6,33 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 16:41:36 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/04/14 17:53:13 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/04/20 12:23:28 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	param_precision(t_param *param, int size)
+void	param_precision(t_param *param)
 {
 	int		precisioncopy;
 
 	precisioncopy = param->precision;
-	//printf("%d\n", precisioncopy);
-	//printf("%d\n", size);
-	//printf("\n%d\n", precisioncopy);
-	if (param->plus && param->minus)
-		precisioncopy = param->precision - size;
-	else if (param->minus && param->width <= param->precision && param->precision >= size)
-		precisioncopy = param->precision - size;
-	else if (param->minus)
-		precisioncopy = param->width - param->precision - size;
-	else
+	if (param->precision)
 	{
-		//printf("\n%d\n", precisioncopy);
-		precisioncopy = param->precision;
-		//printf("\n%d\n", precisioncopy);
+		if (param->plus && param->minus)
+			precisioncopy = param->precision - param->sizestr;
+		else if (param->minus && param->width <= param->precision &&
+											param->precision >= param->sizestr)
+			precisioncopy = param->precision - param->sizestr;
+		else if (param->minus)
+			precisioncopy = param->width - param->precision - param->sizestr;
+		while (precisioncopy > 0)
+		{
+			ft_putchar('0');
+			precisioncopy--;
+			param->number++;
+		}
 	}
-	//printf("\n%d\n", precisioncopy);
-	while (param->precision && precisioncopy > 0)
-	{
-		ft_putchar('0');
-		precisioncopy--;
-		param->number++;
-	}
-	//printf("||\n");
 }
 
 void	param_precisionstr(t_param *param, char *str)
@@ -55,10 +48,11 @@ void	param_precisionstr(t_param *param, char *str)
 	}
 }
 
-void	param_precisionwchart(t_param *param, wchar_t *str, int size)
+void	param_precisionwchart(t_param *param, wchar_t *str)
 {
 	int		i;
 	int		stock;
+	int		size;
 
 	i = 0;
 	stock = param->number;
