@@ -1,0 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_p.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/26 19:10:59 by jcharloi          #+#    #+#             */
+/*   Updated: 2017/04/26 19:11:05 by jcharloi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+int		check_forp(t_param *param)
+{
+	int		widthcopy;
+
+	widthcopy = param->width;
+	if (param->precisiontest == 1 && param->isprecision == 0)
+	{
+		ft_putstr("0x");
+		param->number = param->number + 2;
+		return (1);
+	}
+	else if (param->isprecision == 1 && param->precision == 0)
+	{
+		ft_putstr("0x");
+		param->number = param->number + 2;
+		return (1);
+	}
+	return (0);
+}
+
+void		print_p(va_list *ap, t_param *param)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	param->arglong = va_arg(*ap, unsigned long);
+	if (param->arglong == 0 && param->sharp == 0 && check_forp(param) == 1)
+		return ;
+	str = ft_ultoabase(param->arglong, 16);
+	param->sizestr = ft_strlen(str);
+	if (param->minus == 0)
+		param->precision = param->precision - param->sizestr;
+	if (param->precision < 0)
+		param->precision = 0;
+	param_width(param);
+	ft_putstr("0x");
+	param->number = param->number + 2;
+	param_zero(param);
+	param_precision(param);
+	print_arg(param, str, i);
+	param_minus(param);
+	ft_strdel(&str);
+}
