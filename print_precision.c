@@ -6,45 +6,11 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 16:41:36 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/04/26 19:12:11 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/05/01 18:22:33 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		check_width(t_param *param)
-{
-	int		widthcopy;
-
-	widthcopy = param->width;
-	if (param->precisiontest == 1 && param->isprecision == 0)
-	{
-		if (param->width)
-		{
-			while (widthcopy > 0)
-			{
-				ft_putchar(' ');
-				param->number++;
-				widthcopy--;
-			}	
-		}
-		return (1);
-	}
-	else if (param->isprecision == 1 && param->precision == 0)
-	{
-		if (param->width)
-		{
-			while (widthcopy > 0)
-			{
-				ft_putchar(' ');
-				param->number++;
-				widthcopy--;
-			}
-		}
-		return (1);
-	}
-	return (0);
-}
 
 void	param_precision(t_param *param)
 {

@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 15:12:24 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/04/26 19:36:54 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/05/03 11:27:56 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		check_type(t_param *param, int c)
 {
-	const char	*str = "sSpdDioOuUxXcC%";
+	const char	*str = "sSpdDioOuUxXcCn%";
 	int			i;
 
 	i = 0;
@@ -87,7 +87,7 @@ static void		check_height(t_param *param, const char *format, int *i)
 	}
 }
 
-void		check_after(t_param *param, const char *format, int *i)
+void			check_after(t_param *param, const char *format, int *i)
 {
 	(*i)++;
 	check_flags(param, format, i);

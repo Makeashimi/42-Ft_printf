@@ -1,37 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_p.c                                          :+:      :+:    :+:   */
+/*   print_cs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/26 19:10:59 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/05/01 14:00:38 by jcharloi         ###   ########.fr       */
+/*   Created: 2017/03/08 12:42:48 by jcharloi          #+#    #+#             */
+/*   Updated: 2017/05/03 11:24:08 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <wchar.h>
 
-void		print_p(va_list *ap, t_param *param)
+void			print_c(va_list *ap, t_param *param)
 {
-	char	*str;
-	int		i;
+	char	c;
 
-	i = 0;
-	param->arglong = va_arg(*ap, unsigned long);
-	paramforprecision(param, (int)param->arglong);
-	str = ft_ultoabase(param->arglong, 16);
-	param->sizestr = ft_strlen(str);
-	if (param->minus == 0)
-		param->precision = param->precision - param->sizestr;
-	if (param->precision < 0)
-		param->precision = 0;
+	if (param->l)
+	{
+		print_cup(ap, param);
+		return ;
+	}
+	c = va_arg(*ap, int);
+	param->sizestr = 1;
 	param_width(param);
-	ft_putstr("0x");
-	param->number = param->number + 2;
 	param_zero(param);
-	param_precision(param);
-	print_arg(param, str, i);
+	ft_putchar(c);
+	param->number++;
 	param_minus(param);
-	ft_strdel(&str);
+}
+
+void			print_cup(va_list *ap, t_param *param)
+{
+	wchar_t		c;
+
+	c = va_arg(*ap, wchar_t);
+	param->sizestr = whatsize(c);
+	param_width(param);
+	param_zero(param);
+	print_wchart(c);
+	param->number = param->number + param->sizestr;
+	param_minus(param);
 }

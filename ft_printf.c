@@ -6,13 +6,13 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 12:34:29 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/04/26 16:05:15 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/05/03 11:28:05 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_arg g_print_type[15] =
+t_arg g_print_type[16] =
 {
 	print_s,
 	print_sup,
@@ -28,6 +28,7 @@ t_arg g_print_type[15] =
 	print_xup,
 	print_c,
 	print_cup,
+	print_n,
 	print_pourcent
 };
 
@@ -36,8 +37,7 @@ void		print_type(t_param *param, va_list *ap)
 	g_print_type[param->type](ap, param);
 }
 
-static int	whenpourcent(t_param *param, va_list *ap, const char *format,
-							int *i)
+static void	initvariable(t_param *param)
 {
 	param->plus = 0;
 	param->minus = 0;
@@ -54,13 +54,28 @@ static int	whenpourcent(t_param *param, va_list *ap, const char *format,
 	param->ll = 0;
 	param->j = 0;
 	param->z = 0;
+	param->arglong = 0;
+	param->arguint = 0;
+	param->max = 0;
+	param->size = 0;
+	param->argchar = 0;
+	param->argshort = 0;
+	param->argushort = 0;
 	param->sizestr = 0;
+}
+
+static int	whenpourcent(t_param *param, va_list *ap, const char *format,
+							int *i)
+{
+	initvariable(param);
 	check_after(param, format, i);
 	if (param->type >= 0)
 	{
 		if (param->minus != 0 && param->precision != 0)
 			param->zero = 0;
-		if (param->precision != 0 && param->zero != 0)
+		if (param->precisiontest == 1 && param->zero != 0 && param->type != 15
+	&& param->type != 12 && param->type != 0 && param->type != 1
+														&& param->type != 13)
 			param->zero = 0;
 		print_type(param, ap);
 	}

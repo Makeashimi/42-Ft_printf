@@ -6,7 +6,7 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 15:36:05 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/04/26 19:36:36 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:17:04 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,33 @@ void	print_pourcent(va_list *ap, t_param *param)
 	param_minus(param);
 }
 
+void	print_n(va_list *ap, t_param *param)
+{
+	int		*value;
+
+	value = va_arg(*ap, int *);
+	*value = param->number;
+}
+
 void	print_arg(t_param *param, const char *str, int i)
 {
+	if (param->type == 6 || param->type == 7)
+	{
+		if (param->sharp)
+		{
+			while (str[i] != '\0')
+			{
+				ft_putchar(str[i]);
+				param->number++;
+				i++;
+			}
+			return ;
+		}
+	}
+	if (*str == '0' && param->precisiontest == 1 && param->isprecision == 0)
+		return ;
+	if (*str == '0' && param->isprecision == 1 && param->precision == 0)
+		return ;
 	while (str[i] != '\0')
 	{
 		ft_putchar(str[i]);

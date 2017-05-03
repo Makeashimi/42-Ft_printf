@@ -6,12 +6,13 @@
 /*   By: jcharloi <jcharloi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 12:34:59 by jcharloi          #+#    #+#             */
-/*   Updated: 2017/04/26 19:11:45 by jcharloi         ###   ########.fr       */
+/*   Updated: 2017/05/03 11:29:42 by jcharloi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# define EOC "\033[0m"
 
 # include "libft/libft.h"
 # include <stdio.h>
@@ -29,6 +30,7 @@ typedef	struct	s_param
 	int					precisiontest;
 	int					isprecision;
 	int					precision;
+	int					star;
 	int					h;
 	int					hh;
 	int					l;
@@ -36,12 +38,13 @@ typedef	struct	s_param
 	int					j;
 	int					z;
 	unsigned long		arglong;
-	unsigned int		argint;
+	unsigned int		arguint;
 	uintmax_t			max;
 	ssize_t				size;
 	char				*str;
 	unsigned char		argchar;
-	unsigned short int	argshort;
+	short				argshort;
+	unsigned short int	argushort;
 	int					sizestr;
 	int					type;
 }				t_param;
@@ -51,10 +54,11 @@ typedef	void(*t_arg)(va_list*, t_param*);
 int				ft_printf(const char *format, ...);
 void			check_after(t_param *param, const char *format, int *i);
 void			next_param(t_param *param);
+void			paramforprecision(t_param *param, int arg);
+void			initparamlj(va_list *ap, t_param *param, int base);
 void			param_minus(t_param *param);
 void			param_plus(t_param *param, int n);
 void			param_space(t_param *param);
-int				check_width(t_param *param);
 int				check_widthforsharp(t_param *param);
 int				check_forp(t_param *param);
 void			param_width(t_param *param);
@@ -81,6 +85,7 @@ void			print_xup(va_list *ap, t_param *param);
 void			print_c(va_list *ap, t_param *param);
 void			print_cup(va_list *ap, t_param *param);
 void			print_pourcent(va_list *ap, t_param *param);
+void			print_n(va_list *ap, t_param *param);
 void			print_type(t_param *param, va_list *ap);
 
 #endif
